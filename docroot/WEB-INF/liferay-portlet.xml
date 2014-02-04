@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>RSS</portlet-name>
-		<icon>/icon.png</icon>
+		<icon>/sdg-logo-32x32.png</icon>
 	    <instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
