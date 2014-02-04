@@ -285,10 +285,18 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed makeFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _feedLocalService.makeFeed(url);
+		return _feedLocalService.addFeed(url);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed updateFeed(long feedId,
+		java.lang.String url)
+		throws com.liferay.portal.NoSuchUserException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _feedLocalService.updateFeed(feedId, url);
 	}
 
 	/**

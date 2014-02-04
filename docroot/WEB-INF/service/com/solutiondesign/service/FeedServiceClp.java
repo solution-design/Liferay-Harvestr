@@ -36,9 +36,17 @@ public class FeedServiceClp implements FeedService {
 
 		_methodParameterTypes3 = new String[] {  };
 
-		_methodName4 = "makeFeed";
+		_methodName4 = "addFeed";
 
 		_methodParameterTypes4 = new String[] { "java.lang.String" };
+
+		_methodName5 = "updateFeed";
+
+		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
+
+		_methodName6 = "deleteFeed";
+
+		_methodParameterTypes6 = new String[] { "long" };
 	}
 
 	@Override
@@ -115,7 +123,7 @@ public class FeedServiceClp implements FeedService {
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed makeFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -148,6 +156,74 @@ public class FeedServiceClp implements FeedService {
 		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
+	@Override
+	public com.solutiondesign.model.Feed updateFeed(long feedId,
+		java.lang.String url)
+		throws com.liferay.portal.NoSuchUserException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] { feedId, ClpSerializer.translateInput(url) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.NoSuchUserException) {
+				throw (com.liferay.portal.NoSuchUserException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed deleteFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6, new Object[] { feedId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -157,4 +233,8 @@ public class FeedServiceClp implements FeedService {
 	private String[] _methodParameterTypes3;
 	private String _methodName4;
 	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 }

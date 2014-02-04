@@ -67,10 +67,23 @@ public class FeedServiceUtil {
 		return getService().myFeeds();
 	}
 
-	public static com.solutiondesign.model.Feed makeFeed(java.lang.String url)
+	public static com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().makeFeed(url);
+		return getService().addFeed(url);
+	}
+
+	public static com.solutiondesign.model.Feed updateFeed(long feedId,
+		java.lang.String url)
+		throws com.liferay.portal.NoSuchUserException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateFeed(feedId, url);
+	}
+
+	public static com.solutiondesign.model.Feed deleteFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteFeed(feedId);
 	}
 
 	public static void clearService() {

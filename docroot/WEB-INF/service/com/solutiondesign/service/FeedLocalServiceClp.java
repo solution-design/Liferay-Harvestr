@@ -112,9 +112,13 @@ public class FeedLocalServiceClp implements FeedLocalService {
 
 		_methodParameterTypes19 = new String[] {  };
 
-		_methodName20 = "makeFeed";
+		_methodName20 = "addFeed";
 
 		_methodParameterTypes20 = new String[] { "java.lang.String" };
+
+		_methodName21 = "updateFeed";
+
+		_methodParameterTypes21 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -686,7 +690,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed makeFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -695,6 +699,41 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			returnObj = _invokableLocalService.invokeMethod(_methodName20,
 					_methodParameterTypes20,
 					new Object[] { ClpSerializer.translateInput(url) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.NoSuchUserException) {
+				throw (com.liferay.portal.NoSuchUserException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed updateFeed(long feedId,
+		java.lang.String url)
+		throws com.liferay.portal.NoSuchUserException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] { feedId, ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -760,4 +799,6 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	private String[] _methodParameterTypes19;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
+	private String _methodName21;
+	private String[] _methodParameterTypes21;
 }

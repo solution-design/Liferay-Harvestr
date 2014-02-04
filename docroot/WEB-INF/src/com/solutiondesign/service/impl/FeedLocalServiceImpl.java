@@ -67,7 +67,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 	}
 	
-	public Feed makeFeed(String url) throws NoSuchUserException, SystemException {
+	public Feed addFeed(String url) throws SystemException, NoSuchUserException {
 	    long feedId = counterLocalService.increment(Feed.class.getName());
 		long userId = PrincipalThreadLocal.getUserId();
 
@@ -83,8 +83,27 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	    feed.setModifiedDate(now);
 	    feed.setUrl(url);
 
-	    super.addFeed(feed);
+		return super.addFeed(feed);
+	}
+	
+	public Feed updateFeed(long feedId, String url) throws NoSuchUserException, SystemException  {
+		long userId = PrincipalThreadLocal.getUserId();
+    	User user = userPersistence.findByPrimaryKey(userId);
 
-	    return feed;
+		Calendar dateCal = CalendarFactoryUtil.getCalendar(user.getTimeZone());
+	    Date now = dateCal.getTime();
+	    
+	    Feed feed = feedPersistence.fetchByPrimaryKey(feedId);
+		
+		feed.setUrl(url);
+		feed.setModifiedDate(now);
+		
+		return super.updateFeed(feed);
+	}
+	
+	public Feed deleteFeed(long feedId) throws SystemException {
+	    Feed feed = feedPersistence.fetchByPrimaryKey(feedId);
+	    
+		return super.deleteFeed(feed);
 	}
 }

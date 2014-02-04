@@ -17,6 +17,7 @@ package com.solutiondesign.service.impl;
 import java.util.List;
 
 import com.liferay.portal.NoSuchUserException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.solutiondesign.model.Feed;
 import com.solutiondesign.service.base.FeedServiceBaseImpl;
@@ -45,7 +46,15 @@ public class FeedServiceImpl extends FeedServiceBaseImpl {
 		return getFeedLocalService().myFeeds();
 	}
 	
-	public Feed makeFeed(String url) throws NoSuchUserException, SystemException {
-		return getFeedLocalService().makeFeed(url);
+	public Feed addFeed(String url) throws NoSuchUserException, SystemException {
+		return getFeedLocalService().addFeed(url);
+	}
+	
+	public Feed updateFeed(long feedId, String url) throws SystemException, NoSuchUserException {
+		return getFeedLocalService().updateFeed(feedId, url);
+	}
+	
+	public Feed deleteFeed(long feedId) throws PortalException, SystemException {
+		return getFeedLocalService().deleteFeed(feedId);
 	}
 }

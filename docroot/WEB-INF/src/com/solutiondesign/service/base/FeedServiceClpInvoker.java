@@ -36,9 +36,17 @@ public class FeedServiceClpInvoker {
 
 		_methodParameterTypes24 = new String[] {  };
 
-		_methodName25 = "makeFeed";
+		_methodName25 = "addFeed";
 
 		_methodParameterTypes25 = new String[] { "java.lang.String" };
+
+		_methodName26 = "updateFeed";
+
+		_methodParameterTypes26 = new String[] { "long", "java.lang.String" };
+
+		_methodName27 = "deleteFeed";
+
+		_methodParameterTypes27 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -62,7 +70,18 @@ public class FeedServiceClpInvoker {
 
 		if (_methodName25.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
-			return FeedServiceUtil.makeFeed((java.lang.String)arguments[0]);
+			return FeedServiceUtil.addFeed((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName26.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
+			return FeedServiceUtil.updateFeed(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName27.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
+			return FeedServiceUtil.deleteFeed(((Long)arguments[0]).longValue());
 		}
 
 		throw new UnsupportedOperationException();
@@ -76,4 +95,8 @@ public class FeedServiceClpInvoker {
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
+	private String _methodName26;
+	private String[] _methodParameterTypes26;
+	private String _methodName27;
+	private String[] _methodParameterTypes27;
 }

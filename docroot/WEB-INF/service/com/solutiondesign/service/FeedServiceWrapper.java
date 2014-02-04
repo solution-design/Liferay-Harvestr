@@ -62,10 +62,25 @@ public class FeedServiceWrapper implements FeedService,
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed makeFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _feedService.makeFeed(url);
+		return _feedService.addFeed(url);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed updateFeed(long feedId,
+		java.lang.String url)
+		throws com.liferay.portal.NoSuchUserException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _feedService.updateFeed(feedId, url);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed deleteFeed(long feedId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _feedService.deleteFeed(feedId);
 	}
 
 	/**

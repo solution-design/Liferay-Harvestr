@@ -76,10 +76,39 @@ public class FeedServiceSoap {
 		}
 	}
 
-	public static com.solutiondesign.model.FeedSoap makeFeed(
+	public static com.solutiondesign.model.FeedSoap addFeed(
 		java.lang.String url) throws RemoteException {
 		try {
-			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.makeFeed(url);
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.addFeed(url);
+
+			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.solutiondesign.model.FeedSoap updateFeed(long feedId,
+		java.lang.String url) throws RemoteException {
+		try {
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.updateFeed(feedId,
+					url);
+
+			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.solutiondesign.model.FeedSoap deleteFeed(long feedId)
+		throws RemoteException {
+		try {
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.deleteFeed(feedId);
 
 			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
 		}
