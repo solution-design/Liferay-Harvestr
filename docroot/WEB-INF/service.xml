@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="com.solutiondesign" auto-namespace-tables="true">
+	<author>Bryan Smith</author>
+	<namespace>RSS</namespace>
+
+	<entity name="Feed" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="feedId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="url" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="feedId" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+</service-builder>

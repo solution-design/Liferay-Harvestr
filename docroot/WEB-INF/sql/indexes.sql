@@ -1,0 +1,1 @@
+create index IX_4B3FBFEB on RSS_Feed (userId);
