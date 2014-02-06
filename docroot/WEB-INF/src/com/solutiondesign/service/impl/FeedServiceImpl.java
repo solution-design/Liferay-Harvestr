@@ -20,7 +20,10 @@ import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.solutiondesign.model.Feed;
+import com.solutiondesign.model.impl.FeedImpl;
 import com.solutiondesign.service.base.FeedServiceBaseImpl;
+
+import com.google.gson.Gson;
 
 /**
  * The implementation of the feed remote service.
@@ -42,8 +45,21 @@ public class FeedServiceImpl extends FeedServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.solutiondesign.service.FeedServiceUtil} to access the feed remote service.
 	 */
+	
+	public final Gson gson;
+	
+	public FeedServiceImpl() {
+		gson = new Gson();
+	}
+	
 	public List<Feed> myFeeds() {
 		return getFeedLocalService().myFeeds();
+	}
+	
+	public Feed addFeedJson(String json) throws SystemException{
+		FeedImpl feed = gson.fromJson(json, FeedImpl.class);
+
+		return getFeedLocalService().addFeed((Feed) feed);
 	}
 	
 	public Feed addFeed(String url) throws NoSuchUserException, SystemException {

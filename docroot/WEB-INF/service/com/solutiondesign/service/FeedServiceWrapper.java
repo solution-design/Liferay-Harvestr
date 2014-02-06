@@ -62,6 +62,12 @@ public class FeedServiceWrapper implements FeedService,
 	}
 
 	@Override
+	public com.solutiondesign.model.Feed addFeedJson(java.lang.String json)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _feedService.addFeedJson(json);
+	}
+
+	@Override
 	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {

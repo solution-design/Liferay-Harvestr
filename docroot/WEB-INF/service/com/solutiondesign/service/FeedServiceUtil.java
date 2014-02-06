@@ -67,6 +67,12 @@ public class FeedServiceUtil {
 		return getService().myFeeds();
 	}
 
+	public static com.solutiondesign.model.Feed addFeedJson(
+		java.lang.String json)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().addFeedJson(json);
+	}
+
 	public static com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {

@@ -32,21 +32,25 @@ public class FeedServiceClpInvoker {
 
 		_methodParameterTypes19 = new String[] { "java.lang.String" };
 
-		_methodName24 = "myFeeds";
+		_methodName25 = "myFeeds";
 
-		_methodParameterTypes24 = new String[] {  };
+		_methodParameterTypes25 = new String[] {  };
 
-		_methodName25 = "addFeed";
+		_methodName26 = "addFeedJson";
 
-		_methodParameterTypes25 = new String[] { "java.lang.String" };
+		_methodParameterTypes26 = new String[] { "java.lang.String" };
 
-		_methodName26 = "updateFeed";
+		_methodName27 = "addFeed";
 
-		_methodParameterTypes26 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes27 = new String[] { "java.lang.String" };
 
-		_methodName27 = "deleteFeed";
+		_methodName28 = "updateFeed";
 
-		_methodParameterTypes27 = new String[] { "long" };
+		_methodParameterTypes28 = new String[] { "long", "java.lang.String" };
+
+		_methodName29 = "deleteFeed";
+
+		_methodParameterTypes29 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -63,24 +67,29 @@ public class FeedServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
-			return FeedServiceUtil.myFeeds();
-		}
-
 		if (_methodName25.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
-			return FeedServiceUtil.addFeed((java.lang.String)arguments[0]);
+			return FeedServiceUtil.myFeeds();
 		}
 
 		if (_methodName26.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
-			return FeedServiceUtil.updateFeed(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			return FeedServiceUtil.addFeedJson((java.lang.String)arguments[0]);
 		}
 
 		if (_methodName27.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
+			return FeedServiceUtil.addFeed((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName28.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
+			return FeedServiceUtil.updateFeed(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName29.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
 			return FeedServiceUtil.deleteFeed(((Long)arguments[0]).longValue());
 		}
 
@@ -91,12 +100,14 @@ public class FeedServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
 	private String _methodName26;
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }

@@ -76,6 +76,20 @@ public class FeedServiceSoap {
 		}
 	}
 
+	public static com.solutiondesign.model.FeedSoap addFeedJson(
+		java.lang.String json) throws RemoteException {
+		try {
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.addFeedJson(json);
+
+			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.solutiondesign.model.FeedSoap addFeed(
 		java.lang.String url) throws RemoteException {
 		try {

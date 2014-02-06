@@ -66,6 +66,9 @@ public interface FeedService extends BaseService, InvokableService {
 
 	public java.util.List<com.solutiondesign.model.Feed> myFeeds();
 
+	public com.solutiondesign.model.Feed addFeedJson(java.lang.String json)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException;

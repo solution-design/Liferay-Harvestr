@@ -36,17 +36,21 @@ public class FeedServiceClp implements FeedService {
 
 		_methodParameterTypes3 = new String[] {  };
 
-		_methodName4 = "addFeed";
+		_methodName4 = "addFeedJson";
 
 		_methodParameterTypes4 = new String[] { "java.lang.String" };
 
-		_methodName5 = "updateFeed";
+		_methodName5 = "addFeed";
 
-		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "java.lang.String" };
 
-		_methodName6 = "deleteFeed";
+		_methodName6 = "updateFeed";
 
-		_methodParameterTypes6 = new String[] { "long" };
+		_methodParameterTypes6 = new String[] { "long", "java.lang.String" };
+
+		_methodName7 = "deleteFeed";
+
+		_methodParameterTypes7 = new String[] { "long" };
 	}
 
 	@Override
@@ -123,14 +127,43 @@ public class FeedServiceClp implements FeedService {
 	}
 
 	@Override
+	public com.solutiondesign.model.Feed addFeedJson(java.lang.String json)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] { ClpSerializer.translateInput(json) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
 					new Object[] { ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
@@ -164,8 +197,8 @@ public class FeedServiceClp implements FeedService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] { feedId, ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
@@ -198,8 +231,8 @@ public class FeedServiceClp implements FeedService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6, new Object[] { feedId });
+			returnObj = _invokableService.invokeMethod(_methodName7,
+					_methodParameterTypes7, new Object[] { feedId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -237,4 +270,6 @@ public class FeedServiceClp implements FeedService {
 	private String[] _methodParameterTypes5;
 	private String _methodName6;
 	private String[] _methodParameterTypes6;
+	private String _methodName7;
+	private String[] _methodParameterTypes7;
 }
