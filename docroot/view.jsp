@@ -38,7 +38,7 @@
 <ul id="feeds" style="list-style-type: none;"></ul>
 
 <portlet:renderURL var="editURL">
-    <portlet:param name="mvcPath" value="/edit.jsp" />
+     <portlet:param name="view" value="edit" />
 </portlet:renderURL>
 
 <p><a href="${editURL}">Edit Feeds</a></p>
