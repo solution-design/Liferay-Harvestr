@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
+import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.solutiondesign.model.Feed;
 import com.solutiondesign.service.base.FeedLocalServiceBaseImpl;
 
@@ -50,6 +52,11 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	 */
 	private static final Logger LOG = Logger.getLogger(FeedServiceImpl.class);
 
+	public List<SocialActivity> getUserGroupsActivities() throws SystemException {
+		long userId = PrincipalThreadLocal.getUserId();
+
+		return SocialActivityLocalServiceUtil.getUserGroupsActivities(userId, 0, 3);
+	}
 	
 	@SuppressWarnings("finally")
 	public List<Feed> myFeeds() {
