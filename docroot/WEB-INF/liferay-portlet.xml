@@ -7,12 +7,12 @@
 		<icon>/sdg-logo-32x32.png</icon>
 	    <instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portlet-css>http://cdn.alloyui.com/2.0.0/aui-css/css/bootstrap.min.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/jquery-2.0.3.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/underscore.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/moment-with-langs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/handlebars-v1.3.0.js</footer-portlet-javascript>
-		<footer-portlet-javascript>/js/jquery.jqGrid.src.js</footer-portlet-javascript>
 		<css-class-wrapper>RSS-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

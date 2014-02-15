@@ -25,3 +25,5 @@
 	</liferay-ui:search-container>
 	<button type="submit">Remove</button>
 </form:form>
+
+<div id="grid"></div>

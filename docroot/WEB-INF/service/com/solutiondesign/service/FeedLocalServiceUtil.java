@@ -271,6 +271,11 @@ public class FeedLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static java.util.List<com.liferay.portlet.social.model.SocialActivity> getUserGroupsActivities()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserGroupsActivities();
+	}
+
 	public static java.util.List<com.solutiondesign.model.Feed> myFeeds() {
 		return getService().myFeeds();
 	}

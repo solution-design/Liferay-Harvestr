@@ -280,6 +280,12 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.portlet.social.model.SocialActivity> getUserGroupsActivities()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _feedLocalService.getUserGroupsActivities();
+	}
+
+	@Override
 	public java.util.List<com.solutiondesign.model.Feed> myFeeds() {
 		return _feedLocalService.myFeeds();
 	}

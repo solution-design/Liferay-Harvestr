@@ -35,10 +35,17 @@
 </li>
 </script>
 
-<ul id="feeds" style="list-style-type: none;"></ul>
-
-<portlet:renderURL var="editURL">
-     <portlet:param name="view" value="edit" />
-</portlet:renderURL>
-
-<p><a href="${editURL}">Edit Feeds</a></p>
+<div id="myTab">
+  <div class="tab-content">
+    <div id="tab-1" class="tab-pane">
+    	<ul id="feedList" style="list-style-type: none;"></ul>
+    </div>
+    <div id="tab-2">
+   		<div id="myDataTable"></div>
+    </div>
+  </div>
+  <ul class="nav nav-tabs">
+    <li><a href="#tab-1">Feeds</a></li>
+    <li class="active"><a href="#tab-2">Edit</a></li>
+  </ul>
+</div>

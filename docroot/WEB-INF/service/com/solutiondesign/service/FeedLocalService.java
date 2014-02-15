@@ -244,6 +244,10 @@ public interface FeedLocalService extends BaseLocalService, InvokableLocalServic
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.social.model.SocialActivity> getUserGroupsActivities()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.solutiondesign.model.Feed> myFeeds();
 
 	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
