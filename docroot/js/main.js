@@ -82,7 +82,13 @@
 						}),
 						key : 'url',
 						sortable : true
-					}],
+					},
+				    	{key:'edit', 
+						label:'Edit', 
+						className:'edit-button',
+						allowHTML: true,
+						formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}, 
+				    ],
 					data : feeds,
 					editEvent : 'click'
 				});
@@ -125,6 +131,7 @@ AUI().use(
 	'aui-datatype',
 	'datatable-sort',
 	'datatable-mutable',
+	'datatable-message',
 	function(A) {
 		new SDG.RssPortlet(A);
 });
