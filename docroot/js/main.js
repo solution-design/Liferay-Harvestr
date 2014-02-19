@@ -21,17 +21,20 @@
 		
 		function onDelete(event) {
 			event.preventDefault();			
-//			var feedId=event.currentTarget.getAttribute("data-feedId");
-//			Liferay.Service(
-//					  '/RSS-portlet.feed/delete-feed',
-//					  {
-//					    feedId: feedId
-//					  },
-//					  function(obj) {
-//					    
-//					  }
-//					);
-//			alert();
+			var feedId=event.currentTarget.getAttribute("data-feedId");
+			if (confirm ("Are you sure?")) {
+				Liferay.Service(
+						  '/RSS-portlet.feed/delete-feed',
+						  {
+						    feedId: feedId
+						  },
+						  function(obj) {
+						    var record = dataTable.getRecord(event.currentTarget.get('id'));
+						    dataTable.removeRow(record);
+						  }
+						);
+			}
+
 		}
 		/*
 		 * Get the Feed URL's, populate the 'Feeds' tab using Google's RSS API,
