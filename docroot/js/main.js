@@ -104,14 +104,17 @@
 					},
 					{
 						key:'feedId',
-						label: 'remove',formatter: '<a href="#" class="removeFeed" data-feedId="{value}">Remove</a>',
+						label: ' ',
+						formatter: '<a href="#" class="removeFeed" data-feedId="{value}"><i class="fa fa-trash-o fa-fw"></i></a>',
 						allowHTML: true
 					},
-                        {key:'edit',
-                            label:' ',
-                            className:'edit-button',
-                            allowHTML: true,
-                            formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}],
+                    {
+						key:'edit',
+                        label:' ',
+                        className:'edit-button',
+                        allowHTML: true,
+                        formatter: '<a href="#" data-feedId="{value}"><i class="fa fa-pencil fa-fw"></i></a>'
+                	}],
 					data : feeds,
 					editEvent : 'click'
 				});
