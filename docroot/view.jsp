@@ -35,6 +35,11 @@
 </li>
 </script>
 
+<div class="input-group margin-bottom-sm">
+  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+  <input class="form-control" type="text" value="Email address">
+</div>
+
 <div id="myTab">
   <div class="tab-content">
     <div id="tab-1" class="tab-pane">

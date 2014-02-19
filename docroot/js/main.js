@@ -106,7 +106,12 @@
 						key:'feedId',
 						label: 'remove',formatter: '<a href="#" class="removeFeed" data-feedId="{value}">Remove</a>',
 						allowHTML: true
-					}],
+					},
+                        {key:'edit',
+                            label:' ',
+                            className:'edit-button',
+                            allowHTML: true,
+                            formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}],
 					data : feeds,
 					editEvent : 'click'
 				});

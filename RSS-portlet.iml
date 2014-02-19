@@ -52,9 +52,10 @@
       <sourceFolder url="file://$MODULE_DIR$/docroot" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="org.eclipse.jst.server.core.container/com.liferay.ide.eclipse.server.tomcat.runtimeClasspathProvider/Liferay v6.2 CE (Tomcat 7)" level="application" />
+    <orderEntry type="library" exported="" name="org.eclipse.jst.j2ee.internal.web.container" level="application" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0" level="application_server_libraries" />
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="com.liferay.ide.eclipse.server.plugin.container/portlet" level="application" />
   </component>
 </module>
 

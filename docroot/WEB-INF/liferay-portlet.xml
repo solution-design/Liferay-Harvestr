@@ -8,6 +8,7 @@
 	    <instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<header-portlet-css>http://cdn.alloyui.com/2.0.0/aui-css/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/jquery-2.0.3.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/underscore.js</footer-portlet-javascript>
