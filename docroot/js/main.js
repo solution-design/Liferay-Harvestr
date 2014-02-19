@@ -81,10 +81,14 @@
 							}
 						}),
 						key : 'url',
-						sortable : true
+						sortable : true,
+						formatter: function(el, oRecord, oColumn, oData) {
+							
+							alert();
+						}
 					},
 				    	{key:'edit', 
-						label:'Edit', 
+						label:' ', 
 						className:'edit-button',
 						allowHTML: true,
 						formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}, 
