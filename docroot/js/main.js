@@ -17,6 +17,22 @@
 			type: 'pills'
 		}).render();
 		
+		A.one("#myDataTable").delegate('click', onDelete, '.removeFeed');
+		
+		function onDelete(event) {
+			event.preventDefault();			
+//			var feedId=event.currentTarget.getAttribute("data-feedId");
+//			Liferay.Service(
+//					  '/RSS-portlet.feed/delete-feed',
+//					  {
+//					    feedId: feedId
+//					  },
+//					  function(obj) {
+//					    
+//					  }
+//					);
+//			alert();
+		}
 		/*
 		 * Get the Feed URL's, populate the 'Feeds' tab using Google's RSS API,
 		 * and populate the 'Edit' tab.
@@ -81,18 +97,18 @@
 							}
 						}),
 						key : 'url',
-						sortable : true,
-						formatter: function(el, oRecord, oColumn, oData) {
-							
-							alert();
-						}
+						sortable : true
 					},
-				    	{key:'edit', 
-						label:' ', 
-						className:'edit-button',
-						allowHTML: true,
-						formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}, 
-				    ],
+					{
+						key:'feedId',
+						label: 'remove',formatter: '<a href="#" class="removeFeed" data-feedId="{value}">Remove</a>',
+						allowHTML: true
+					},
+                        {key:'edit',
+                            label:' ',
+                            className:'edit-button',
+                            allowHTML: true,
+                            formatter: "<i class=\"fa fa-pencil fa-fw\"></i>"}],
 					data : feeds,
 					editEvent : 'click'
 				});
@@ -135,7 +151,6 @@ AUI().use(
 	'aui-datatype',
 	'datatable-sort',
 	'datatable-mutable',
-	'datatable-message',
 	function(A) {
 		new SDG.RssPortlet(A);
 });
