@@ -15,6 +15,7 @@
 	<bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
 	<bean class="com.solutiondesign.controller.RssFeedController" />
+	<bean class="com.solutiondesign.controller.RSSEditController" />
 	
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.InternalResourceView" />
