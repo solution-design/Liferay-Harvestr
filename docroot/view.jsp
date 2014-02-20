@@ -47,6 +47,7 @@
     </div>
     <div id="tab-2">
    		<div id="myDataTable"></div>
+		<button class="btn" value="Add"><i class="icon-plus"> Add</i></button>
     </div>
   </div>
   <ul class="nav nav-tabs">

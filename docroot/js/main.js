@@ -114,6 +114,13 @@
                         className:'edit-button',
                         allowHTML: true,
                         formatter: '<a href="#" data-feedId="{value}"><i class="fa fa-pencil fa-fw"></i></a>'
+                	},
+                	{
+						key:'edit',
+                        label:' ',
+                        className:'edit-button',
+                        allowHTML: true,
+                        formatter: '<button class="btn" value="Add"><i class="icon-pencil"></i></button><button class="btn" value="Add"><i class="icon-trash"></i></button>'
                 	}],
 					data : feeds,
 					editEvent : 'click'
