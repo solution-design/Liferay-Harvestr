@@ -16,14 +16,33 @@
 			srcNode : '#myTab',
 			type: 'pills'
 		}).render();
-
-        A.one('#myDataTable').delegate('click', onDelete, '.removeFeed');
-        A.one('.addFeed').delegate('click', onAdd);
-        
-        function onAdd(event) {
-        	dataTable.addRow({'url':'http://'});
-        }
-
+		
+		A.one("#myDataTable").delegate('click', onDelete, '.removeFeed');
+		A.one("html").delegate('click', onAllowUserFeeds, '.allowUserFeedsBtn');
+		
+		function onAllowUserFeeds(event) {
+			event.preventDefault();
+			var url = event.currentTarget.getAttribute("data-url");
+			var button=A.one('.allowUserFeedsBtn');
+			var originalLabel = button.html();
+			button.html("Wait...");
+			button.set('disabled',true);
+			A.io.request(url, {
+				   method: 'GET',
+				   dataType: 'json',
+				   on: { 
+					   success: function() { 						 
+						   button.html(this.get('responseData'));
+						   button.set('disabled',false);
+					   },
+					   failure: function() { alert("There was a problem serving your request")
+						   button.set('disabled',false);
+						   button.html(originalLabel);
+					   }
+				   }
+				});
+		}
+		
 		function onDelete(event) {
 			event.preventDefault();			
 			var feedId=event.currentTarget.getAttribute('data-feedId');
@@ -112,6 +131,7 @@
 					{
                         key:'feedId',
                         label:' ',
+                        className:'edit-button',
                         allowHTML: true,
                         formatter: '<button class="btn removeFeed btn-danger"><i class="icon-trash"></i></button>'
                     }],
