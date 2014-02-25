@@ -5,7 +5,7 @@
 	 */
 	me.RssPortlet = function(A){
 		var items = [], 
-			source = $("#feed-item-template").html(),
+			source = A.one('#feed-item-template').html(),
 			template = Handlebars.compile(source),
 			dataTable;		
 		
@@ -16,13 +16,18 @@
 			srcNode : '#myTab',
 			type: 'pills'
 		}).render();
-		
-		A.one("#myDataTable").delegate('click', onDelete, '.removeFeed');
-		
+
+        A.one('#myDataTable').delegate('click', onDelete, '.removeFeed');
+        A.one('.addFeed').delegate('click', onAdd);
+        
+        function onAdd(event) {
+        	dataTable.addRow({'url':'http://'});
+        }
+
 		function onDelete(event) {
 			event.preventDefault();			
-			var feedId=event.currentTarget.getAttribute("data-feedId");
-			if (confirm ("Are you sure?")) {
+			var feedId=event.currentTarget.getAttribute('data-feedId');
+			if (confirm ('Are you sure?')) {
 				Liferay.Service(
 						  '/RSS-portlet.feed/delete-feed',
 						  {
@@ -51,8 +56,8 @@
 				_.each(feeds,
 					function(feed) {
 						$.ajax({
-							url : "http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num="+ 3+ "&output=json&q="+ feed.url+ "&hl=en&callback=?",
-							dataType : "json",
+							url : 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='+ 3+ '&output=json&q='+ feed.url+ '&hl=en&callback=?',
+							dataType : 'json',
 							success : function(data) {
 								/*
 								 * Google can't get the RSS feed
@@ -100,28 +105,16 @@
 							}
 						}),
 						key : 'url',
-						sortable : true
+						sortable : true,
+						allowHTML: true,
+						formatter: '<input type="text" class="form-control" value="{value}"><span style="padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1;color: #555;text-align: center;background-color: #eee;border: 1px solid #ccc;border-radius: 4px;"><i class="fa icon-pencil fa-fw"></i></span>'
 					},
 					{
-						key:'feedId',
-						label: ' ',
-						formatter: '<a href="#" class="removeFeed" data-feedId="{value}"><i class="fa fa-trash-o fa-fw"></i></a>',
-						allowHTML: true
-					},
-                    {
-						key:'edit',
+                        key:'feedId',
                         label:' ',
-                        className:'edit-button',
                         allowHTML: true,
-                        formatter: '<a href="#" data-feedId="{value}"><i class="fa fa-pencil fa-fw"></i></a>'
-                	},
-                	{
-						key:'edit',
-                        label:' ',
-                        className:'edit-button',
-                        allowHTML: true,
-                        formatter: '<button class="btn" value="Add"><i class="icon-pencil"></i></button><button class="btn" value="Add"><i class="icon-trash"></i></button>'
-                	}],
+                        formatter: '<button class="btn removeFeed btn-danger"><i class="icon-trash"></i></button>'
+                    }],
 					data : feeds,
 					editEvent : 'click'
 				});
@@ -131,7 +124,7 @@
 				/*
 				 * On URL Edit, lookup the feed, and update the DB
 				 */
-				dataTable.subscribe("model:urlChange", function(e){
+				dataTable.subscribe('model:urlChange', function(e){
 					var prevUrlFeed = _.find(feeds, function(feed){
 						return feed.url == e.prevVal;
 					});

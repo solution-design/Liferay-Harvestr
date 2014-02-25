@@ -35,11 +35,6 @@
 </li>
 </script>
 
-<div class="input-group margin-bottom-sm">
-  <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-  <input class="form-control" type="text" value="Email address">
-</div>
-
 <div id="myTab">
   <div class="tab-content">
     <div id="tab-1" class="tab-pane">
@@ -47,7 +42,7 @@
     </div>
     <div id="tab-2">
    		<div id="myDataTable"></div>
-		<button class="btn" value="Add"><i class="icon-plus"> Add</i></button>
+		<button class="btn addFeed btn-primary" value="Add"><i class="icon-plus"> Add</i></button>
     </div>
   </div>
   <ul class="nav nav-tabs">

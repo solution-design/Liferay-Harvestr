@@ -20,6 +20,7 @@
 		<!-- Other fields -->
 
 		<column name="url" type="String" />
+		<column name="scope" type="String" />
 
 		<!-- Order -->
 
