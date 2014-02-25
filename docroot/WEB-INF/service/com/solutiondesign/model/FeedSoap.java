@@ -37,6 +37,7 @@ public class FeedSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setUrl(model.getUrl());
+		soapModel.setScope(model.getScope());
 
 		return soapModel;
 	}
@@ -137,10 +138,19 @@ public class FeedSoap implements Serializable {
 		_url = url;
 	}
 
+	public String getScope() {
+		return _scope;
+	}
+
+	public void setScope(String scope) {
+		_scope = scope;
+	}
+
 	private long _feedId;
 	private long _companyId;
 	private long _userId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _url;
+	private String _scope;
 }

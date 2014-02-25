@@ -160,6 +160,21 @@ public interface FeedModel extends BaseModel<Feed> {
 	 */
 	public void setUrl(String url);
 
+	/**
+	 * Returns the scope of this feed.
+	 *
+	 * @return the scope of this feed
+	 */
+	@AutoEscape
+	public String getScope();
+
+	/**
+	 * Sets the scope of this feed.
+	 *
+	 * @param scope the scope of this feed
+	 */
+	public void setScope(String scope);
+
 	@Override
 	public boolean isNew();
 

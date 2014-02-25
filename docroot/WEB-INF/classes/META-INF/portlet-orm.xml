@@ -19,6 +19,7 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="url" />
+			<basic name="scope" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

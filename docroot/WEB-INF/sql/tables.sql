@@ -4,5 +4,6 @@ create table RSS_Feed (
 	userId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,
-	url VARCHAR(75) null
+	url VARCHAR(75) null,
+	scope VARCHAR(75) null
 );

@@ -55,6 +55,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("url", getUrl());
+		attributes.put("scope", getScope());
 
 		return attributes;
 	}
@@ -95,6 +96,12 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 
 		if (url != null) {
 			setUrl(url);
+		}
+
+		String scope = (String)attributes.get("scope");
+
+		if (scope != null) {
+			setScope(scope);
 		}
 	}
 
@@ -258,6 +265,26 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	@Override
 	public void setUrl(java.lang.String url) {
 		_feed.setUrl(url);
+	}
+
+	/**
+	* Returns the scope of this feed.
+	*
+	* @return the scope of this feed
+	*/
+	@Override
+	public java.lang.String getScope() {
+		return _feed.getScope();
+	}
+
+	/**
+	* Sets the scope of this feed.
+	*
+	* @param scope the scope of this feed
+	*/
+	@Override
+	public void setScope(java.lang.String scope) {
+		_feed.setScope(scope);
 	}
 
 	@Override

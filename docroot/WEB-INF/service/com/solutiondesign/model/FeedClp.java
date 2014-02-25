@@ -80,6 +80,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("url", getUrl());
+		attributes.put("scope", getScope());
 
 		return attributes;
 	}
@@ -120,6 +121,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 		if (url != null) {
 			setUrl(url);
+		}
+
+		String scope = (String)attributes.get("scope");
+
+		if (scope != null) {
+			setScope(scope);
 		}
 	}
 
@@ -271,6 +278,29 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	@Override
+	public String getScope() {
+		return _scope;
+	}
+
+	@Override
+	public void setScope(String scope) {
+		_scope = scope;
+
+		if (_feedRemoteModel != null) {
+			try {
+				Class<?> clazz = _feedRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setScope", String.class);
+
+				method.invoke(_feedRemoteModel, scope);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getFeedRemoteModel() {
 		return _feedRemoteModel;
 	}
@@ -346,6 +376,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setUrl(getUrl());
+		clone.setScope(getScope());
 
 		return clone;
 	}
@@ -400,7 +431,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
@@ -414,6 +445,8 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		sb.append(getModifiedDate());
 		sb.append(", url=");
 		sb.append(getUrl());
+		sb.append(", scope=");
+		sb.append(getScope());
 		sb.append("}");
 
 		return sb.toString();
@@ -421,7 +454,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.solutiondesign.model.Feed");
@@ -451,6 +484,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 			"<column><column-name>url</column-name><column-value><![CDATA[");
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>scope</column-name><column-value><![CDATA[");
+		sb.append(getScope());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -464,5 +501,6 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _url;
+	private String _scope;
 	private BaseModel<?> _feedRemoteModel;
 }

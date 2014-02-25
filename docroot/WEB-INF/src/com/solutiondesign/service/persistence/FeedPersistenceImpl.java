@@ -826,6 +826,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		feedImpl.setCreateDate(feed.getCreateDate());
 		feedImpl.setModifiedDate(feed.getModifiedDate());
 		feedImpl.setUrl(feed.getUrl());
+		feedImpl.setScope(feed.getScope());
 
 		return feedImpl;
 	}

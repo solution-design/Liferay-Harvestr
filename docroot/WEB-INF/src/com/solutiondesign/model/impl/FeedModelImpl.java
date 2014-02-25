@@ -70,9 +70,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			{ "userId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "url", Types.VARCHAR }
+			{ "url", Types.VARCHAR },
+			{ "scope", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table RSS_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,url VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table RSS_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,url VARCHAR(75) null,scope VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table RSS_Feed";
 	public static final String ORDER_BY_JPQL = " ORDER BY feed.feedId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY RSS_Feed.feedId ASC";
@@ -110,6 +111,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setUrl(soapModel.getUrl());
+		model.setScope(soapModel.getScope());
 
 		return model;
 	}
@@ -180,6 +182,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("url", getUrl());
+		attributes.put("scope", getScope());
 
 		return attributes;
 	}
@@ -220,6 +223,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 		if (url != null) {
 			setUrl(url);
+		}
+
+		String scope = (String)attributes.get("scope");
+
+		if (scope != null) {
+			setScope(scope);
 		}
 	}
 
@@ -318,6 +327,22 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		_url = url;
 	}
 
+	@JSON
+	@Override
+	public String getScope() {
+		if (_scope == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _scope;
+		}
+	}
+
+	@Override
+	public void setScope(String scope) {
+		_scope = scope;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -355,6 +380,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		feedImpl.setCreateDate(getCreateDate());
 		feedImpl.setModifiedDate(getModifiedDate());
 		feedImpl.setUrl(getUrl());
+		feedImpl.setScope(getScope());
 
 		feedImpl.resetOriginalValues();
 
@@ -456,12 +482,20 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			feedCacheModel.url = null;
 		}
 
+		feedCacheModel.scope = getScope();
+
+		String scope = feedCacheModel.scope;
+
+		if ((scope != null) && (scope.length() == 0)) {
+			feedCacheModel.scope = null;
+		}
+
 		return feedCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
@@ -475,6 +509,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		sb.append(getModifiedDate());
 		sb.append(", url=");
 		sb.append(getUrl());
+		sb.append(", scope=");
+		sb.append(getScope());
 		sb.append("}");
 
 		return sb.toString();
@@ -482,7 +518,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.solutiondesign.model.Feed");
@@ -512,6 +548,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 			"<column><column-name>url</column-name><column-value><![CDATA[");
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>scope</column-name><column-value><![CDATA[");
+		sb.append(getScope());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -529,6 +569,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _url;
+	private String _scope;
 	private long _columnBitmask;
 	private Feed _escapedModel;
 }

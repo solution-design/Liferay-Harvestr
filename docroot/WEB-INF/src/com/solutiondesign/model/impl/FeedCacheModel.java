@@ -37,7 +37,7 @@ import java.util.Date;
 public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{feedId=");
 		sb.append(feedId);
@@ -51,6 +51,8 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		sb.append(modifiedDate);
 		sb.append(", url=");
 		sb.append(url);
+		sb.append(", scope=");
+		sb.append(scope);
 		sb.append("}");
 
 		return sb.toString();
@@ -85,6 +87,13 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 			feedImpl.setUrl(url);
 		}
 
+		if (scope == null) {
+			feedImpl.setScope(StringPool.BLANK);
+		}
+		else {
+			feedImpl.setScope(scope);
+		}
+
 		feedImpl.resetOriginalValues();
 
 		return feedImpl;
@@ -98,6 +107,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
 		url = objectInput.readUTF();
+		scope = objectInput.readUTF();
 	}
 
 	@Override
@@ -115,6 +125,13 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 		else {
 			objectOutput.writeUTF(url);
 		}
+
+		if (scope == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(scope);
+		}
 	}
 
 	public long feedId;
@@ -123,4 +140,5 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	public long createDate;
 	public long modifiedDate;
 	public String url;
+	public String scope;
 }

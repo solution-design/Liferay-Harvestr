@@ -8,5 +8,6 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="url" type="String" />
+		<field name="scope" type="String" />
 	</model>
 </model-hints>
