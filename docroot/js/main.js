@@ -17,6 +17,8 @@
 			type: 'pills'
 		}).render();
 		
+		
+		
 		A.one("#myDataTable").delegate('click', onDelete, '.removeFeed');
 		A.one("html").delegate('click', onAllowUserFeeds, '.allowUserFeedsBtn');
 		

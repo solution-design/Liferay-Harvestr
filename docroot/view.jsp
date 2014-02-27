@@ -14,8 +14,8 @@
  */
 %>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ page import="javax.portlet.PortletPreferences" %>
 
 <portlet:defineObjects />
 
@@ -45,8 +45,11 @@
 		<button class="btn addFeed btn-primary" value="Add"><i class="icon-plus"> Add</i></button>
     </div>
   </div>
-  <ul class="nav nav-tabs">
-    <li><a href="#tab-1">Feeds</a></li>
-    <li class="active"><a href="#tab-2">Edit</a></li>
+  <c:if test="${!allowUserFeed}">
+  	<c:set var="hiddenClass" value="hidden"/>
+  </c:if>
+  <ul class="nav nav-tabs ${hiddenClass}">
+    <li class="active feedsTab"><a href="#tab-1">Feeds</a></li>
+    <li class="editTab"><a href="#tab-2">Edit</a></li>
   </ul>
 </div>
