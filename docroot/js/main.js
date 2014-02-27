@@ -4,18 +4,25 @@
 	 * 	aui-datatype, datatable-sort, and datatable-mutable
 	 */
 	me.RssPortlet = function(A){
-		var items = [], 
-			source = A.one('#feed-item-template').html(),
-			template = Handlebars.compile(source),
-			dataTable;		
+		var items = [], 			
+			
+			dataTable;	
 		
-		/*
-		 * Setup tab view
-		 */
-		new A.TabView({
-			srcNode : '#myTab',
-			type: 'pills'
-		}).render();
+		var feedItemTemplate = A.one('#feed-item-template');
+		
+		var source, template;
+		if (feedItemTemplate){
+			source = feedItemTemplate.html();
+			template = Handlebars.compile(source);
+			/*
+			 * Setup tab view
+			 */
+			new A.TabView({
+				srcNode : '#myTab',
+				type: 'pills'
+			}).render();
+		}
+		
 		
 		
 		
@@ -73,43 +80,44 @@
 				 *  TODO: Handle this in a better way
 				 */
 				if (!_.isArray(feeds)) return;
-				
-				_.each(feeds,
-					function(feed) {
-						$.ajax({
-							url : 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='+ 3+ '&output=json&q='+ feed.url+ '&hl=en&callback=?',
-							dataType : 'json',
-							success : function(data) {
-								/*
-								 * Google can't get the RSS feed
-								 */
-								if (data.responseStatus == 400) return;
-								
-								/*
-								 * Union new feed items with previous feed items and order by
-								 * the publish date, descending
-								 */ 
-								items = _.sortBy(
-									_.union(items,data.responseData.feed.entries),
-									function(item) {return moment(item.publishedDate).format();}
-								).reverse();
-
-								/*
-								 * Empty any previous items because we have a superset of that data
-								 */
-								$('#feedList').empty();
-
-								/*
-								 * Use Handlebars template to render and append on the list
-								 */
-								_.each(items,
-									function(item) {
-										item.publishedDate = moment(item.publishedDate).fromNow();
-										$('#feedList').append(template(item));
-								});
-							}
-						});
-				});
+				if (feedItemTemplate) {
+					_.each(feeds,
+						function(feed) {
+							$.ajax({
+								url : 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='+ 3+ '&output=json&q='+ feed.url+ '&hl=en&callback=?',
+								dataType : 'json',
+								success : function(data) {
+									/*
+									 * Google can't get the RSS feed
+									 */
+									if (data.responseStatus == 400) return;
+									
+									/*
+									 * Union new feed items with previous feed items and order by
+									 * the publish date, descending
+									 */ 
+									items = _.sortBy(
+										_.union(items,data.responseData.feed.entries),
+										function(item) {return moment(item.publishedDate).format();}
+									).reverse();
+	
+									/*
+									 * Empty any previous items because we have a superset of that data
+									 */
+									$('#feedList').empty();
+	
+									/*
+									 * Use Handlebars template to render and append on the list
+									 */
+									_.each(items,
+										function(item) {
+											item.publishedDate = moment(item.publishedDate).fromNow();
+											$('#feedList').append(template(item));
+									});
+								}
+							});
+					});
+			}
 				
 				/*
 				 * Setup data table
