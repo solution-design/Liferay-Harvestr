@@ -39,10 +39,15 @@
 				Liferay.Service('/RSS-portlet.feed/add-feed',
 						{url: newFeed},
 						function(obj) {
-							console.log(obj);
+							dataTable.addRow({
+								feedId: obj.feedId,
+								url: obj.url}
+							);
+							dataTable.syncUI();
+							
 						},
 						function(obj) {
-							alert ('fail?');
+							alert ('There was an error trying to add');
 						}
 				);
 			}
@@ -86,7 +91,7 @@
 						    dataTable.removeRow(record);
 						  },
 						  function(obj) {
-							  alert('fail?');
+							  alert('There was an error trying to delete');
 						  }
 						);
 			}
@@ -168,7 +173,7 @@
                         label:' ',
                         className:'edit-button',
                         allowHTML: true,
-                        formatter: '<button class="btn removeFeed btn-danger"><i class="icon-trash"></i></button>',
+                        formatter: '<button class="btn removeFeed btn-danger" data-feedId="{value}"><i class="icon-trash"></i></button>',
                         width: '12%'
                     }],
 					data : feeds,
