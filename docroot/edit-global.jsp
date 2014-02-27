@@ -21,11 +21,11 @@
 
 
 <portlet:resourceURL var="resourceURL" id="allowUserFeedsToggle"></portlet:resourceURL>
-<div class="input-group margin-bottom-sm">
-	<button class="allowUserFeedsBtn" data-url="${resourceURL}">${allowLabel}</button>
+<div class="input-group margin-bottom-sm">  
+  <input id="newFeed" type="text" value=""><button class="addNewBtn">Add</button>
   <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-  <input class="form-control" type="text" value="Email address">
+  
 	
 </div>
- 		<div id="myDataTable"></div>
-</div>
+<div id="myDataTable"></div>
+<button class="allowUserFeedsBtn" data-url="${resourceURL}">${allowLabel}</button>
