@@ -28,6 +28,31 @@
 		
 		A.one("#myDataTable").delegate('click', onDelete, '.removeFeed');
 		A.one("html").delegate('click', onAllowUserFeeds, '.allowUserFeedsBtn');
+		A.one("html").delegate('click', onAddNewFeed, '.addNewBtn');
+	
+		function onAddNewFeed(event) {
+			var newFeed = A.one("#newFeed").val();
+			if (!newFeed) {
+				alert("Must enter text");
+				
+			} else {
+				Liferay.Service('/RSS-portlet.feed/add-feed',
+						{url: newFeed},
+						function(obj) {
+							dataTable.addRow({
+								feedId: obj.feedId,
+								url: obj.url}
+							);
+							dataTable.syncUI();
+							
+						},
+						function(obj) {
+							alert ('There was an error trying to add');
+						}
+				);
+			}
+			
+		}
 		
 		function onAllowUserFeeds(event) {
 			event.preventDefault();
@@ -64,6 +89,9 @@
 						  function(obj) {
 						    var record = dataTable.getRecord(event.currentTarget.get('id'));
 						    dataTable.removeRow(record);
+						  },
+						  function(obj) {
+							  alert('There was an error trying to delete');
 						  }
 						);
 			}
@@ -136,14 +164,17 @@
 						key : 'url',
 						sortable : true,
 						allowHTML: true,
-						formatter: '<input type="text" class="form-control" value="{value}"><span style="padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1;color: #555;text-align: center;background-color: #eee;border: 1px solid #ccc;border-radius: 4px;"><i class="fa icon-pencil fa-fw"></i></span>'
+						formatter: '<div class="urlCell">{value}<i class="fa icon-pencil fa-fw"></i></div>',
+						label: ' ',
+						width:'88%'
 					},
 					{
                         key:'feedId',
                         label:' ',
                         className:'edit-button',
                         allowHTML: true,
-                        formatter: '<button class="btn removeFeed btn-danger"><i class="icon-trash"></i></button>'
+                        formatter: '<button class="btn removeFeed btn-danger" data-feedId="{value}"><i class="icon-trash"></i></button>',
+                        width: '12%'
                     }],
 					data : feeds,
 					editEvent : 'click'

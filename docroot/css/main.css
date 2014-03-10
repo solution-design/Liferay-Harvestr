@@ -2,3 +2,38 @@
 	display:none;
 	
 }
+
+#newFeed {
+	margin: 12px 12px 12px 0px;
+	width: 82%;
+}
+
+#myDataTable {
+	table {		
+		width:100%;
+		.urlCell {		
+			width:99%%;	
+			padding:5px;
+			.icon-pencil {
+				float:right;
+				visibility:hidden;
+				color: #2AAAE6;
+			}				
+		}
+		button {
+			float:right;
+					
+		}
+		
+		.urlCell:hover {
+			border: 1px solid #2AAAE6;
+			padding: 4px;
+			.icon-pencil {
+				visibility:visible;
+			}
+		}
+		th { display: none }
+	}	
+}
+
+
