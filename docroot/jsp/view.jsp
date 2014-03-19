@@ -14,37 +14,28 @@
  */
 %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <portlet:defineObjects />
 
-<script id="feed-item-template" type="text/x-handlebars-template">
-<li>
-	<div>
-		<div>
-			<div class="feed-title" style="display: inline;"><a href="{{link}}" target="_new">{{title}}</a></div>
-			{{#if author}}
-			<div class="itemAuthor" style="display: inline;"> by {{author}}, </div>
-			{{/if}}
-			<div class="feed-published-date feed-date" style="display: inline;">{{publishedDate}}</div>
-		</div>
-		<div class="itemContent" style="text-indent: 1em;">{{{content}}}</div>
-		<div class="separator">
-	</div>
-</li>
-</script>
+<%@ include file="/jsp/errata.jsp" %>
+<%@ include file="/jsp/feed-item-template.jsp" %>
 
 <div id="myTab">
   <div class="tab-content">
     <div id="tab-1" class="tab-pane">
     	<ul id="feedList" style="list-style-type: none;"></ul>
     </div>
-    <div id="tab-2">
-   		<div id="myDataTable"></div>
-		<button class="btn addFeed btn-primary" value="Add"><i class="icon-plus"> Add</i></button>
-    </div>
-  </div>
+		<div id="tab-2">
+			<div class="input-group margin-bottom-sm">
+				<input id="newFeed" type="text" value="">
+				<button class="addNewBtn">Add</button>
+				<span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
+			</div>
+			<div id="myDataTable"></div>
+		</div>
+	</div>
   <c:if test="${!allowUserFeed}">
   	<c:set var="hiddenClass" value="hidden"/>
   </c:if>

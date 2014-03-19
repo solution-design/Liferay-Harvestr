@@ -3,6 +3,7 @@
 
 <portlet:actionURL var="actionURL"/>	
 
+<%@ include file="/jsp/errata.jsp" %>
 
 <form:form action="${actionURL}" method="post">
 	<liferay-ui:search-container emptyResultsMessage="No RSS feeds" delta="1000">

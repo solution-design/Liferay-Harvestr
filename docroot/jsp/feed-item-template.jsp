@@ -1,0 +1,15 @@
+<script id="feed-item-template" type="text/x-handlebars-template">
+<li>
+	<div>
+		<div>
+			<div class="feed-title" style="display: inline;"><a href="{{link}}" target="_new">{{title}}</a></div>
+			{{#if author}}
+			<div class="itemAuthor" style="display: inline;"> by {{author}}, </div>
+			{{/if}}
+			<div class="feed-published-date feed-date" style="display: inline;">{{publishedDate}}</div>
+		</div>
+		<div class="itemContent" style="text-indent: 1em;">{{{content}}}</div>
+		<div class="separator">
+	</div>
+</li>
+</script>

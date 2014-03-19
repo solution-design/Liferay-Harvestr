@@ -19,13 +19,14 @@
 
 <portlet:defineObjects />
 
+<%@ include file="/jsp/errata.jsp" %>
 
-<portlet:resourceURL var="resourceURL" id="allowUserFeedsToggle"></portlet:resourceURL>
+<portlet:resourceURL var="resourceURL" id="allowUserFeedsToggle" />
+
 <div class="input-group margin-bottom-sm">  
   <input id="newFeed" type="text" value=""><button class="addNewBtn">Add</button>
   <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-  
-	
 </div>
+
 <div id="myDataTable"></div>
 <button class="allowUserFeedsBtn" data-url="${resourceURL}">${allowLabel}</button>
