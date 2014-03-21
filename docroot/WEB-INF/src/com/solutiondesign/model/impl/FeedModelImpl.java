@@ -89,8 +89,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.column.bitmask.enabled.com.solutiondesign.model.Feed"),
 			true);
-	public static long USERID_COLUMN_BITMASK = 1L;
-	public static long FEEDID_COLUMN_BITMASK = 2L;
+	public static long SCOPE_COLUMN_BITMASK = 1L;
+	public static long USERID_COLUMN_BITMASK = 2L;
+	public static long FEEDID_COLUMN_BITMASK = 4L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -340,7 +341,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public void setScope(String scope) {
+		_columnBitmask |= SCOPE_COLUMN_BITMASK;
+
+		if (_originalScope == null) {
+			_originalScope = _scope;
+		}
+
 		_scope = scope;
+	}
+
+	public String getOriginalScope() {
+		return GetterUtil.getString(_originalScope);
 	}
 
 	public long getColumnBitmask() {
@@ -442,6 +453,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		feedModelImpl._originalUserId = feedModelImpl._userId;
 
 		feedModelImpl._setOriginalUserId = false;
+
+		feedModelImpl._originalScope = feedModelImpl._scope;
 
 		feedModelImpl._columnBitmask = 0;
 	}
@@ -570,6 +583,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private Date _modifiedDate;
 	private String _url;
 	private String _scope;
+	private String _originalScope;
 	private long _columnBitmask;
 	private Feed _escapedModel;
 }

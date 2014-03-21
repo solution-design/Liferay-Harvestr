@@ -118,15 +118,19 @@ public class FeedLocalServiceClpInvoker {
 
 		_methodName42 = "addFeed";
 
-		_methodParameterTypes42 = new String[] { "java.lang.String" };
+		_methodParameterTypes42 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 
 		_methodName43 = "updateFeed";
 
-		_methodParameterTypes43 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes43 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
 		_methodName44 = "deleteFeed";
 
-		_methodParameterTypes44 = new String[] { "long" };
+		_methodParameterTypes44 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -242,18 +246,20 @@ public class FeedLocalServiceClpInvoker {
 
 		if (_methodName42.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			return FeedLocalServiceUtil.addFeed((java.lang.String)arguments[0]);
+			return FeedLocalServiceUtil.addFeed((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName43.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return FeedLocalServiceUtil.updateFeed(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName44.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
-			return FeedLocalServiceUtil.deleteFeed(((Long)arguments[0]).longValue());
+			return FeedLocalServiceUtil.deleteFeed(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		throw new UnsupportedOperationException();

@@ -32,5 +32,8 @@
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />
 		</finder>
+        <finder name="Scope" return-type="Collection">
+            <finder-column name="scope"></finder-column>
+        </finder>
 	</entity>
 </service-builder>

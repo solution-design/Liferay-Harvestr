@@ -267,6 +267,165 @@ public class FeedUtil {
 	}
 
 	/**
+	* Returns all the feeds where scope = &#63;.
+	*
+	* @param scope the scope
+	* @return the matching feeds
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.solutiondesign.model.Feed> findByScope(
+		java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByScope(scope);
+	}
+
+	/**
+	* Returns a range of all the feeds where scope = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.solutiondesign.model.impl.FeedModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param scope the scope
+	* @param start the lower bound of the range of feeds
+	* @param end the upper bound of the range of feeds (not inclusive)
+	* @return the range of matching feeds
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.solutiondesign.model.Feed> findByScope(
+		java.lang.String scope, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByScope(scope, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the feeds where scope = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.solutiondesign.model.impl.FeedModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param scope the scope
+	* @param start the lower bound of the range of feeds
+	* @param end the upper bound of the range of feeds (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching feeds
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.solutiondesign.model.Feed> findByScope(
+		java.lang.String scope, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByScope(scope, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first feed in the ordered set where scope = &#63;.
+	*
+	* @param scope the scope
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching feed
+	* @throws com.solutiondesign.NoSuchFeedException if a matching feed could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.solutiondesign.model.Feed findByScope_First(
+		java.lang.String scope,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.solutiondesign.NoSuchFeedException {
+		return getPersistence().findByScope_First(scope, orderByComparator);
+	}
+
+	/**
+	* Returns the first feed in the ordered set where scope = &#63;.
+	*
+	* @param scope the scope
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching feed, or <code>null</code> if a matching feed could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.solutiondesign.model.Feed fetchByScope_First(
+		java.lang.String scope,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByScope_First(scope, orderByComparator);
+	}
+
+	/**
+	* Returns the last feed in the ordered set where scope = &#63;.
+	*
+	* @param scope the scope
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching feed
+	* @throws com.solutiondesign.NoSuchFeedException if a matching feed could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.solutiondesign.model.Feed findByScope_Last(
+		java.lang.String scope,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.solutiondesign.NoSuchFeedException {
+		return getPersistence().findByScope_Last(scope, orderByComparator);
+	}
+
+	/**
+	* Returns the last feed in the ordered set where scope = &#63;.
+	*
+	* @param scope the scope
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching feed, or <code>null</code> if a matching feed could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.solutiondesign.model.Feed fetchByScope_Last(
+		java.lang.String scope,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByScope_Last(scope, orderByComparator);
+	}
+
+	/**
+	* Returns the feeds before and after the current feed in the ordered set where scope = &#63;.
+	*
+	* @param feedId the primary key of the current feed
+	* @param scope the scope
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next feed
+	* @throws com.solutiondesign.NoSuchFeedException if a feed with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.solutiondesign.model.Feed[] findByScope_PrevAndNext(
+		long feedId, java.lang.String scope,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.solutiondesign.NoSuchFeedException {
+		return getPersistence()
+				   .findByScope_PrevAndNext(feedId, scope, orderByComparator);
+	}
+
+	/**
+	* Removes all the feeds where scope = &#63; from the database.
+	*
+	* @param scope the scope
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByScope(java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByScope(scope);
+	}
+
+	/**
+	* Returns the number of feeds where scope = &#63;.
+	*
+	* @param scope the scope
+	* @return the number of matching feeds
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByScope(java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByScope(scope);
+	}
+
+	/**
 	* Caches the feed in the entity cache if it is enabled.
 	*
 	* @param feed the feed

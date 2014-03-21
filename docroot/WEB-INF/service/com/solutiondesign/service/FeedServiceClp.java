@@ -42,15 +42,19 @@ public class FeedServiceClp implements FeedService {
 
 		_methodName5 = "addFeed";
 
-		_methodParameterTypes5 = new String[] { "java.lang.String" };
+		_methodParameterTypes5 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 
 		_methodName6 = "updateFeed";
 
-		_methodParameterTypes6 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes6 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
 		_methodName7 = "deleteFeed";
 
-		_methodParameterTypes7 = new String[] { "long" };
+		_methodParameterTypes7 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -104,7 +108,7 @@ public class FeedServiceClp implements FeedService {
 	}
 
 	@Override
-	public java.util.List<com.solutiondesign.model.Feed> myFeeds() {
+	public java.util.Set<com.solutiondesign.model.Feed> myFeeds() {
 		Object returnObj = null;
 
 		try {
@@ -123,7 +127,7 @@ public class FeedServiceClp implements FeedService {
 			}
 		}
 
-		return (java.util.List<com.solutiondesign.model.Feed>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.Set<com.solutiondesign.model.Feed>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -156,7 +160,8 @@ public class FeedServiceClp implements FeedService {
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url,
+		java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -164,7 +169,11 @@ public class FeedServiceClp implements FeedService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName5,
 					_methodParameterTypes5,
-					new Object[] { ClpSerializer.translateInput(url) });
+					new Object[] {
+						ClpSerializer.translateInput(url),
+						
+					ClpSerializer.translateInput(scope)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -191,7 +200,7 @@ public class FeedServiceClp implements FeedService {
 
 	@Override
 	public com.solutiondesign.model.Feed updateFeed(long feedId,
-		java.lang.String url)
+		java.lang.String url, java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -199,7 +208,13 @@ public class FeedServiceClp implements FeedService {
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName6,
 					_methodParameterTypes6,
-					new Object[] { feedId, ClpSerializer.translateInput(url) });
+					new Object[] {
+						feedId,
+						
+					ClpSerializer.translateInput(url),
+						
+					ClpSerializer.translateInput(scope)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -225,14 +240,16 @@ public class FeedServiceClp implements FeedService {
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed deleteFeed(long feedId)
+	public com.solutiondesign.model.Feed deleteFeed(long feedId,
+		java.lang.String scope)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7, new Object[] { feedId });
+					_methodParameterTypes7,
+					new Object[] { feedId, ClpSerializer.translateInput(scope) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

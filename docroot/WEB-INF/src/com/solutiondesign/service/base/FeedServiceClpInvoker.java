@@ -42,15 +42,19 @@ public class FeedServiceClpInvoker {
 
 		_methodName27 = "addFeed";
 
-		_methodParameterTypes27 = new String[] { "java.lang.String" };
+		_methodParameterTypes27 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 
 		_methodName28 = "updateFeed";
 
-		_methodParameterTypes28 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes28 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
 		_methodName29 = "deleteFeed";
 
-		_methodParameterTypes29 = new String[] { "long" };
+		_methodParameterTypes29 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -79,18 +83,20 @@ public class FeedServiceClpInvoker {
 
 		if (_methodName27.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
-			return FeedServiceUtil.addFeed((java.lang.String)arguments[0]);
+			return FeedServiceUtil.addFeed((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName28.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes28, parameterTypes)) {
 			return FeedServiceUtil.updateFeed(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
 		if (_methodName29.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes29, parameterTypes)) {
-			return FeedServiceUtil.deleteFeed(((Long)arguments[0]).longValue());
+			return FeedServiceUtil.deleteFeed(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		throw new UnsupportedOperationException();

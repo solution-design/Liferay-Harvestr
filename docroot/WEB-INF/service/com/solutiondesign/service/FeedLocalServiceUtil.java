@@ -276,21 +276,28 @@ public class FeedLocalServiceUtil {
 		return getService().getUserGroupsActivities();
 	}
 
-	public static java.util.List<com.solutiondesign.model.Feed> myFeeds() {
+	public static java.util.Set<com.solutiondesign.model.Feed> myFeeds() {
 		return getService().myFeeds();
 	}
 
-	public static com.solutiondesign.model.Feed addFeed(java.lang.String url)
+	public static com.solutiondesign.model.Feed addFeed(java.lang.String url,
+		java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addFeed(url);
+		return getService().addFeed(url, scope);
 	}
 
 	public static com.solutiondesign.model.Feed updateFeed(long feedId,
-		java.lang.String url)
+		java.lang.String url, java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().updateFeed(feedId, url);
+		return getService().updateFeed(feedId, url, scope);
+	}
+
+	public static com.solutiondesign.model.Feed deleteFeed(long feedId,
+		java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().deleteFeed(feedId, scope);
 	}
 
 	public static void clearService() {

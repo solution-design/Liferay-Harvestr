@@ -286,23 +286,31 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	}
 
 	@Override
-	public java.util.List<com.solutiondesign.model.Feed> myFeeds() {
+	public java.util.Set<com.solutiondesign.model.Feed> myFeeds() {
 		return _feedLocalService.myFeeds();
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url,
+		java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _feedLocalService.addFeed(url);
+		return _feedLocalService.addFeed(url, scope);
 	}
 
 	@Override
 	public com.solutiondesign.model.Feed updateFeed(long feedId,
-		java.lang.String url)
+		java.lang.String url, java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _feedLocalService.updateFeed(feedId, url);
+		return _feedLocalService.updateFeed(feedId, url, scope);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed deleteFeed(long feedId,
+		java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _feedLocalService.deleteFeed(feedId, scope);
 	}
 
 	/**

@@ -62,12 +62,12 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class FeedServiceSoap {
-	public static com.solutiondesign.model.FeedSoap[] myFeeds()
+	public static java.util.Set<com.solutiondesign.model.Feed> myFeeds()
 		throws RemoteException {
 		try {
-			java.util.List<com.solutiondesign.model.Feed> returnValue = FeedServiceUtil.myFeeds();
+			java.util.Set<com.solutiondesign.model.Feed> returnValue = FeedServiceUtil.myFeeds();
 
-			return com.solutiondesign.model.FeedSoap.toSoapModels(returnValue);
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -91,9 +91,10 @@ public class FeedServiceSoap {
 	}
 
 	public static com.solutiondesign.model.FeedSoap addFeed(
-		java.lang.String url) throws RemoteException {
+		java.lang.String url, java.lang.String scope) throws RemoteException {
 		try {
-			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.addFeed(url);
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.addFeed(url,
+					scope);
 
 			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
 		}
@@ -105,10 +106,10 @@ public class FeedServiceSoap {
 	}
 
 	public static com.solutiondesign.model.FeedSoap updateFeed(long feedId,
-		java.lang.String url) throws RemoteException {
+		java.lang.String url, java.lang.String scope) throws RemoteException {
 		try {
 			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.updateFeed(feedId,
-					url);
+					url, scope);
 
 			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
 		}
@@ -119,10 +120,11 @@ public class FeedServiceSoap {
 		}
 	}
 
-	public static com.solutiondesign.model.FeedSoap deleteFeed(long feedId)
-		throws RemoteException {
+	public static com.solutiondesign.model.FeedSoap deleteFeed(long feedId,
+		java.lang.String scope) throws RemoteException {
 		try {
-			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.deleteFeed(feedId);
+			com.solutiondesign.model.Feed returnValue = FeedServiceUtil.deleteFeed(feedId,
+					scope);
 
 			return com.solutiondesign.model.FeedSoap.toSoapModel(returnValue);
 		}

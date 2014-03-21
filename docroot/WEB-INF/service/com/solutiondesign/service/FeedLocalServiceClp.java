@@ -118,11 +118,19 @@ public class FeedLocalServiceClp implements FeedLocalService {
 
 		_methodName21 = "addFeed";
 
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
 
 		_methodName22 = "updateFeed";
 
-		_methodParameterTypes22 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes22 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
+
+		_methodName23 = "deleteFeed";
+
+		_methodParameterTypes23 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -699,7 +707,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	}
 
 	@Override
-	public java.util.List<com.solutiondesign.model.Feed> myFeeds() {
+	public java.util.Set<com.solutiondesign.model.Feed> myFeeds() {
 		Object returnObj = null;
 
 		try {
@@ -718,11 +726,12 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			}
 		}
 
-		return (java.util.List<com.solutiondesign.model.Feed>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.Set<com.solutiondesign.model.Feed>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.solutiondesign.model.Feed addFeed(java.lang.String url)
+	public com.solutiondesign.model.Feed addFeed(java.lang.String url,
+		java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -730,7 +739,11 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName21,
 					_methodParameterTypes21,
-					new Object[] { ClpSerializer.translateInput(url) });
+					new Object[] {
+						ClpSerializer.translateInput(url),
+						
+					ClpSerializer.translateInput(scope)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -757,7 +770,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 
 	@Override
 	public com.solutiondesign.model.Feed updateFeed(long feedId,
-		java.lang.String url)
+		java.lang.String url, java.lang.String scope)
 		throws com.liferay.portal.NoSuchUserException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -765,7 +778,13 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
-					new Object[] { feedId, ClpSerializer.translateInput(url) });
+					new Object[] {
+						feedId,
+						
+					ClpSerializer.translateInput(url),
+						
+					ClpSerializer.translateInput(scope)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -773,6 +792,36 @@ public class FeedLocalServiceClp implements FeedLocalService {
 			if (t instanceof com.liferay.portal.NoSuchUserException) {
 				throw (com.liferay.portal.NoSuchUserException)t;
 			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.solutiondesign.model.Feed)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.solutiondesign.model.Feed deleteFeed(long feedId,
+		java.lang.String scope)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { feedId, ClpSerializer.translateInput(scope) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
@@ -835,4 +884,6 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	private String[] _methodParameterTypes21;
 	private String _methodName22;
 	private String[] _methodParameterTypes22;
+	private String _methodName23;
+	private String[] _methodParameterTypes23;
 }

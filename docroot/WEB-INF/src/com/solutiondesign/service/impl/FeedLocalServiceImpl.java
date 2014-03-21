@@ -14,9 +14,12 @@
 
 package com.solutiondesign.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -59,12 +62,13 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	}
 	
 	@SuppressWarnings("finally")
-	public List<Feed> myFeeds() {
+	public Set<Feed> myFeeds() {
 		long userId = PrincipalThreadLocal.getUserId();
-		List<Feed> Feeds = null;
+		Set<Feed> Feeds = new HashSet<Feed>();
 		
 		try {
-			Feeds = feedPersistence.findByUserId(userId);
+			Feeds.addAll(feedPersistence.findByUserId(userId));
+			Feeds.addAll(feedPersistence.findByScope("global"));
 		} catch (SystemException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,7 +78,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 		}
 	}
 	
-	public Feed addFeed(String url) throws SystemException, NoSuchUserException {
+	public Feed addFeed(String url, String scope) throws SystemException, NoSuchUserException {
 	    long feedId = counterLocalService.increment(Feed.class.getName());
 		long userId = PrincipalThreadLocal.getUserId();
 
@@ -89,11 +93,12 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	    feed.setCreateDate(now);
 	    feed.setModifiedDate(now);
 	    feed.setUrl(url);
+	    feed.setScope(scope);
 
 		return super.addFeed(feed);
 	}
 	
-	public Feed updateFeed(long feedId, String url) throws NoSuchUserException, SystemException  {
+	public Feed updateFeed(long feedId, String url, String scope) throws NoSuchUserException, SystemException  {
 		long userId = PrincipalThreadLocal.getUserId();
     	User user = userPersistence.findByPrimaryKey(userId);
 
@@ -103,12 +108,13 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	    Feed feed = feedPersistence.fetchByPrimaryKey(feedId);
 		
 		feed.setUrl(url);
+		feed.setScope(scope);
 		feed.setModifiedDate(now);
 		
 		return super.updateFeed(feed);
 	}
 	
-	public Feed deleteFeed(long feedId) throws SystemException {
+	public Feed deleteFeed(long feedId, String scope) throws SystemException {
 	    Feed feed = feedPersistence.fetchByPrimaryKey(feedId);
 	    
 		return super.deleteFeed(feed);
