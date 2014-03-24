@@ -14,7 +14,6 @@
 
 package com.solutiondesign.service.impl;
 
-import java.util.List;
 import java.util.Set;
 
 import com.liferay.portal.NoSuchUserException;
@@ -59,7 +58,7 @@ public class FeedServiceImpl extends FeedServiceBaseImpl {
 	public Feed addFeedJson(String json) throws SystemException{
 		FeedImpl feed = gson.fromJson(json, FeedImpl.class);
 
-		return getFeedLocalService().addFeed((Feed) feed);
+		return getFeedLocalService().addFeed(feed);
 	}
 	
 	public Feed addFeed(String url, String scope) throws NoSuchUserException, SystemException {

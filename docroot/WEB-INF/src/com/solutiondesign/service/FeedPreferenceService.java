@@ -5,6 +5,7 @@ import javax.portlet.ResourceRequest;
 
 import com.solutiondesign.exception.FeedPreferenceException;
 
+@SuppressWarnings("unused")
 public interface FeedPreferenceService {
 	public Boolean allowUserFeeds(PortletRequest request);
 	public void allowUserFeeds(PortletRequest request, boolean val) throws FeedPreferenceException;

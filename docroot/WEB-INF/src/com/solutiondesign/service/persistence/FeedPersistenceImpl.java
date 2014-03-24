@@ -1687,6 +1687,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 	private static Log _log = LogFactoryUtil.getLog(FeedPersistenceImpl.class);
 	private static Feed _nullFeed = new FeedImpl() {
+			/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 			@Override
 			public Object clone() {
 				return this;
@@ -1699,6 +1704,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		};
 
 	private static CacheModel<Feed> _nullFeedCacheModel = new CacheModel<Feed>() {
+			/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 			@Override
 			public Feed toEntityModel() {
 				return _nullFeed;
