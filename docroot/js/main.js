@@ -1,4 +1,17 @@
 ;'use strict';
+/**
+ * Copyright (c) 2014 Solution Design Group All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
 var SDG = SDG || {};
 
@@ -22,10 +35,9 @@ AUI().use(
 			feedItems: [],
 			feedItemTemplate: A.one('#feed-item-template'),
 			init: function () {
-				A.one("#myDataTable").delegate('click', this.onDelete, '.removeFeed');
-				A.one("html").delegate('click', this.onAllowUserFeeds, '.allowUserFeedsBtn');
 				A.one("html").delegate('click', this.onAddNewFeed, '.addNewBtn');
-				A.one("html").delegate('click', this.editFeeds, '.editTab');
+				A.one("#myDataTable").delegate('click', this.onDeleteFeed, '.removeFeed');
+				A.one("html").delegate('click', this.onEditFeeds, '.editTab');
 				
 				if (this.feedItemTemplate){
 					source = this.feedItemTemplate.html();
@@ -33,86 +45,30 @@ AUI().use(
 					 /* 
 					  * Setup tab view
 					  */
-					new A.TabView({
+					this.tabView = new A.TabView({
 						srcNode : '#myTab',
 						type: 'pills'
 					}).render();
-				}
-				
-				if (SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp')
-					SDG.RssPortlet.editFeeds();
-				else if (SDG.RssPortlet.PortletViewName == '/jsp/view.jsp')
-					SDG.RssPortlet.showFeedItems();
-				
-			},
-			onAddNewFeed: function (event) {
-				var newFeed = A.one("#newFeed").val();
-				if (!newFeed) {
-					alert("Must enter text");
 					
-				} 
-				else {
-					Liferay.Service('/RSS-portlet.feed/add-feed', 
-						{
-							url: newFeed,
-							scope: SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp' ? 'global' : 'user'
-						},
-						function(obj) {
-							SDG.RssPortlet.dataTable.addRow(
-								{
-									feedId: obj.feedId,
-									url: obj.url,
-								}
-							);
-							
-							SDG.RssPortlet.dataTable.syncUI();
-						},
-						function(obj) {
-							alert ('There was an error trying to add');
+					this.tabView.after('selectionChange', function (e) {
+						if (e.newVal.getAttrs().label == "Feeds"){
+							SDG.RssPortlet.getSocialActivities();
+							SDG.RssPortlet.showFeedItems();
 						}
-					);
-				}
-			},
-			onAllowUserFeeds: function (event) {
-				event.preventDefault();
-				var url = event.currentTarget.getAttribute("data-url");
-				var button=A.one('.allowUserFeedsBtn');
-				var originalLabel = button.html();
-				button.html("Wait...");
-				button.set('disabled',true);
-				A.io.request(url, {
-					   method: 'GET',
-					   dataType: 'json',
-					   on: { 
-						   success: function() { 						 
-							   button.html(this.get('responseData'));
-							   button.set('disabled',false);
-						   },
-						   failure: function() { 
-							   alert("There was a problem serving your request");
-							   button.set('disabled',false);
-							   button.html(originalLabel);
-						   }
-					   }
 					});
-			},
-			onDelete: function (event) {
-				event.preventDefault();			
-				var feedId=event.currentTarget.getAttribute('data-feedId');
-				if (confirm ('Are you sure?')) {
-					Liferay.Service(
-							  '/RSS-portlet.feed/delete-feed',
-							  {
-							    feedId: feedId
-							  },
-							  function(obj) {
-							    var record = SDG.RssPortlet.dataTable.getRecord(event.currentTarget.get('id'));
-							    SDG.RssPortlet.dataTable.removeRow(record);
-							  },
-							  function(obj) {
-								  alert('There was an error trying to delete');
-							  }
-							);
+				}
+
+				if (SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp') {
+					SDG.RssPortlet.onEditFeeds();
+					
+					var allowSwitch = document.querySelector('#allowUserFeeds.js-switch');
+					allowSwitch.onchange = this.onAllowUserFeeds;
+					
+					SDG.RssPortlet.userFeedsSwitch = new Switchery(allowSwitch, {color: '#00aaff'});
+				}
+				else if (SDG.RssPortlet.PortletViewName == '/jsp/view.jsp'){
+					SDG.RssPortlet.getSocialActivities();
+					SDG.RssPortlet.showFeedItems();
 				}
 			},
 			populateFeeds: function(callback) {
@@ -127,7 +83,7 @@ AUI().use(
 						 */
 						if (!_.isArray(feeds)) return;
 						SDG.RssPortlet.feeds = feeds;
-						
+
 						if (callback && typeof(callback) === "function")
 							callback.apply(feeds);
 				});
@@ -162,13 +118,10 @@ AUI().use(
 				}
 			},
 			showFeedItems: function() {
+				SDG.RssPortlet.feedItems = [];
+				$('#feedList').empty();
 				SDG.RssPortlet.populateFeeds(function(){
 					SDG.RssPortlet.populateFeedItems(function() {
-						/*
-						 * Empty any previous items because we have a superset of that data
-						 */
-						$('#feedList').empty();
-		
 						/*
 						 * Use Handlebars template to render and append on the list
 						 */
@@ -180,7 +133,79 @@ AUI().use(
 					});
 				});
 			},
-			editFeeds: function() {
+			getSocialActivities: function(){
+				$.ajax({
+					url: SDG.RssPortlet.ActivitiesURL,
+					dataType:'json',
+					success:function(data){
+						for (var i = 0; i < data.length; i++) {
+							if (data[i] != null) {
+								$('#feedList').prepend('<li>' + data[i]._title + '<hr /></li>');
+							}
+						}
+					}
+				});
+			},
+			onAllowUserFeeds: function (event) {
+				event.preventDefault();
+				var url = event.currentTarget.getAttribute("data-url");
+
+				A.io.request(url,
+					{
+						method: 'GET',
+						dataType: 'json',
+						on: {
+							success: function() {},
+							failure: function() {
+								alert("There was a problem serving your request");
+							}
+						}
+					});
+			},
+			onAddNewFeed: function (event) {
+				var newFeed = A.one("#newFeed").val();
+				if (!newFeed) {
+					alert("Must enter text");
+				}
+				else {
+					Liferay.Service('/RSS-portlet.feed/add-feed', 
+						{
+							url: newFeed,
+							scope: SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp' ? 'global' : 'user'
+						},
+						function(obj) {
+							SDG.RssPortlet.dataTable.addRow(
+								{
+									feedId: obj.feedId,
+									url: obj.url,
+								}
+							);
+							SDG.RssPortlet.dataTable.syncUI();
+						},
+						function(obj) {
+							alert ('There was an error trying to add');
+						}
+					);
+				}
+			},
+			onDeleteFeed: function (event) {
+				event.preventDefault();
+				var feedId=event.currentTarget.getAttribute('data-feedId');
+				if (confirm ('Are you sure?')) {
+					Liferay.Service('/RSS-portlet.feed/delete-feed',
+						{
+							feedId: feedId
+						},
+						function(obj) {
+							var record = SDG.RssPortlet.dataTable.getRecord(event.currentTarget.get('id'));
+							SDG.RssPortlet.dataTable.removeRow(record);
+						},
+						function(obj) {
+							alert('There was an error trying to delete');
+						});
+				}
+			},
+			onEditFeeds: function() {
 				if (!_.isObject(SDG.RssPortlet.dataTable)) {
 					SDG.RssPortlet.populateFeeds(function() {
 						var feeds = this;
@@ -193,7 +218,7 @@ AUI().use(
 							feeds = _.filter(feeds, function(feed) {
 								return feed.scope.toLowerCase() == 'user';
 							});
-						
+
 						/*
 						 * Setup data table
 						 */
@@ -216,48 +241,50 @@ AUI().use(
 								width:'88%'
 							},
 							{
-		                        key:'feedId',
-		                        label:' ',
-		                        className:'edit-button',
-		                        allowHTML: true,
-		                        formatter: '<button class="btn removeFeed btn-danger" data-feedId="{value}"><i class="icon-trash"></i></button>',
-		                        width: '12%'
-		                    }],
+								key : 'feedId',
+								label : ' ',
+								className : 'edit-button',
+								allowHTML : true,
+								formatter : '<button class="btn removeFeed btn-danger" data-feedId="{value}"><i class="icon-trash"></i></button>',
+								width : '12%'
+							}],
 							data : feeds,
 							editEvent : 'click'
 						});
-						
-						SDG.RssPortlet.dataTable.render('#myDataTable');						
-	
+
+						SDG.RssPortlet.dataTable.render('#myDataTable');
+
 						/*
 						 * On URL Edit, lookup the feed, and update the DB
 						 */
-						SDG.RssPortlet.dataTable.subscribe('model:urlChange', function(e){
-							var prevUrlFeed = _.find(SDG.RssPortlet.feeds, function(feed){
-								return feed.url == e.prevVal;
-							});
-		
-							/*
-							 * TODO: Add better error handling
-							 */
-							if (_.isUndefined(prevUrlFeed)) return;
-						
-							Liferay.Service('/RSS-portlet.feed/update-feed',
-								{  	
-									feedId: prevUrlFeed.feedId,
-							    	url: e.newVal,
-							    	scope: SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp' ? 'global' : 'user'
-						    	},
-						    	function(obj) {
-						    		console.log(obj);
-						    		SDG.RssPortlet.dataTable.syncUI();
-						    	}
-							);
+						SDG.RssPortlet.dataTable.subscribe(
+							'model:urlChange',
+							function(e) {
+								var prevUrlFeed = _.find(SDG.RssPortlet.feeds,
+									function(feed) {
+										return feed.url == e.prevVal;
+								});
+								/*
+								 * TODO: Add better error handling
+								 */
+								if (_.isUndefined(prevUrlFeed))
+									return;
+
+								Liferay.Service(
+									'/RSS-portlet.feed/update-feed', 
+									{
+										feedId : prevUrlFeed.feedId,
+										url : e.newVal,
+										scope : SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp' ? 'global' : 'user'
+									},
+									function (obj) {
+										SDG.RssPortlet.dataTable.syncUI();
+								});
 						});
 					});
 				}
 			}
-		});
-		
-		SDG.RssPortlet.init();
+	});
+	
+	SDG.RssPortlet.init();
 });

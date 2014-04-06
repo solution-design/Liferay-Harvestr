@@ -1,4 +1,4 @@
-Liferay.Service.register("Liferay.Service.Feed", "com.solutiondesign.feed.service", "feed-portlet");
+Liferay.Service.register("Liferay.Service.Feed", "com.solutiondesign.rss.feed.service", "feed-portlet");
 
 Liferay.Service.registerClass(
 	Liferay.Service.Feed, "Feed",

@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.solutiondesign.model.impl.FeedModelImpl">
+	<mapped-superclass class="com.solutiondesign.rss.model.impl.FeedModelImpl">
 		<attributes>
 			<id name="feedId" />
 			<basic name="companyId" />
@@ -26,7 +26,7 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.solutiondesign.model.impl.FeedImpl" name="Feed">
+	<entity class="com.solutiondesign.rss.model.impl.FeedImpl" name="Feed">
 		<table name="RSS_Feed" />
 		<attributes />
 	</entity>

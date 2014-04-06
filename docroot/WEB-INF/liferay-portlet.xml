@@ -5,13 +5,14 @@
 	<portlet>
 		<portlet-name>RSS</portlet-name>
 		<icon>/sdg-logo-32x32.png</icon>
-	    <instanceable>false</instanceable>
+		<instanceable>false</instanceable>
 		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/js/jquery-2.0.3.js</header-portlet-javascript>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
- 		<footer-portlet-javascript>/js/jquery-2.0.3.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/underscore.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/moment-with-langs.js</footer-portlet-javascript>
 		<footer-portlet-javascript>/js/handlebars-v1.3.0.js</footer-portlet-javascript>
+		<footer-portlet-javascript>/js/switchery.js</footer-portlet-javascript>
 		<css-class-wrapper>RSS-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

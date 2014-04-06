@@ -23,10 +23,10 @@
 <%@ include file="/jsp/feed-item-template.jsp" %>
 
 <div id="myTab">
-  <div class="tab-content">
-    <div id="tab-1" class="tab-pane">
-    	<ul id="feedList" style="list-style-type: none;"></ul>
-    </div>
+	<div class="tab-content">
+		<div id="tab-1" class="tab-pane">
+			<ul id="feedList" style="list-style-type: none;"></ul>
+		</div>
 		<div id="tab-2">
 			<div class="input-group margin-bottom-sm">
 				<input id="newFeed" type="text" value="">
@@ -36,11 +36,11 @@
 			<div id="myDataTable"></div>
 		</div>
 	</div>
-  <c:if test="${!allowUserFeed}">
-  	<c:set var="hiddenClass" value="hidden"/>
-  </c:if>
-  <ul class="nav nav-tabs ${hiddenClass}">
-    <li class="active feedsTab"><a href="#tab-1">Feeds</a></li>
-    <li class="editTab"><a href="#tab-2">Edit</a></li>
-  </ul>
+	<c:if test="${!allowUserFeed}">
+		<c:set var="hiddenClass" value="hidden"/>
+	</c:if>
+	<ul class="nav nav-tabs ${hiddenClass}">
+		<li class="active feedsTab"><a href="#tab-1">Feeds</a></li>
+		<li class="editTab"><a href="#tab-2">Edit</a></li>
+	</ul>
 </div>

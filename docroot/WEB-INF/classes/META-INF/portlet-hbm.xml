@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
-	<import class="com.solutiondesign.model.Feed" />
-	<class name="com.solutiondesign.model.impl.FeedImpl" table="RSS_Feed">
+	<import class="com.solutiondesign.rss.model.Feed" />
+	<class name="com.solutiondesign.rss.model.impl.FeedImpl" table="RSS_Feed">
 		<cache usage="read-write" />
 		<id name="feedId" type="long">
 			<generator class="assigned" />

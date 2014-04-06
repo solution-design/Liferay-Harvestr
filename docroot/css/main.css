@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2014 Solution Design Group All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 .hidden {
 	display:none;
 	
@@ -35,5 +49,24 @@
 		th { display: none }
 	}	
 }
+.switchery {
+	background-color: #fff;
+	border: 1px solid #dfdfdf;
+	border-radius: 20px;
+	cursor: pointer;
+	display: inline-block;
+	height: 30px;
+	position: relative;
+	vertical-align: middle;
+	width: 50px;
+}
 
-
+.switchery>small {
+	background: #fff;
+	border-radius: 100%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+	height: 30px;
+	position: absolute;
+	top: 0;
+	width: 30px;
+}

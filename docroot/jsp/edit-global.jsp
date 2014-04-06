@@ -13,9 +13,9 @@
  * details.
  */
 %>
-
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <portlet:defineObjects />
 
@@ -29,4 +29,9 @@
 </div>
 
 <div id="myDataTable"></div>
-<button class="allowUserFeedsBtn" data-url="${resourceURL}">${allowLabel}</button>
+
+<c:if test="${allowLabel}">
+	<c:set var="checked" value="checked"/>
+</c:if>
+
+Allow user feeds <input id="allowUserFeeds" type="checkbox" class="js-switch" data-url="${resourceURL}" ${checked} />
