@@ -61,13 +61,18 @@ AUI().use(
 				if (SDG.RssPortlet.PortletViewName == '/jsp/edit-global.jsp') {
 					SDG.RssPortlet.onEditFeeds();
 					
-					var allowSwitch = document.querySelector('#allowUserFeeds.js-switch');
-					allowSwitch.onchange = this.onAllowUserFeeds;
-					
-					SDG.RssPortlet.userFeedsSwitch = new Switchery(allowSwitch, {color: '#00aaff'});
+					var allowUserFeedsSwitch = document.querySelector('#allowUserFeeds.js-switch');
+					var showActivitiesSwitch = document.querySelector('#showActivities.js-switch');
+
+					allowUserFeedsSwitch.onchange = this.onAllowUserFeeds;
+					showActivitiesSwitch.onchange = this.onShowActivities;
+
+					SDG.RssPortlet.allowUserFeedsSwitch = new Switchery(allowUserFeedsSwitch, {color: '#00aaff'});
+					SDG.RssPortlet.showActivitiesSwitch = new Switchery(showActivitiesSwitch, {color: '#00aaff'});
 				}
 				else if (SDG.RssPortlet.PortletViewName == '/jsp/view.jsp'){
-					SDG.RssPortlet.getSocialActivities();
+					if (SDG.RssPortlet.ShowActivities === "true") 
+						SDG.RssPortlet.getSocialActivities();
 					SDG.RssPortlet.showFeedItems();
 				}
 			},
@@ -135,7 +140,7 @@ AUI().use(
 			},
 			getSocialActivities: function(){
 				$.ajax({
-					url: SDG.RssPortlet.ActivitiesURL,
+					url: SDG.RssPortlet.UserGroupsActivitiesURL,
 					dataType:'json',
 					success:function(data){
 						for (var i = 0; i < data.length; i++) {
@@ -156,7 +161,23 @@ AUI().use(
 						dataType: 'json',
 						on: {
 							success: function() {},
-							failure: function() {
+							failure: function(data) {
+								alert("There was a problem serving your request");
+							}
+						}
+					});
+			},
+			onShowActivities: function (event) {
+				event.preventDefault();
+				var url = event.currentTarget.getAttribute("data-url");
+
+				A.io.request(url,
+					{
+						method: 'GET',
+						dataType: 'json',
+						on: {
+							success: function() {},
+							failure: function(data) {
 								alert("There was a problem serving your request");
 							}
 						}

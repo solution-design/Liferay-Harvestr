@@ -47,6 +47,7 @@ public class RssEditController {
 	@RenderMapping
 	public String edit(RenderRequest request, Model model) {
 		model.addAttribute("allowLabel",preferenceService.allowUserFeeds(request) ? DISALLOW:ALLOW);
+		model.addAttribute("showActivities",preferenceService.showActivities(request) ? DISALLOW:ALLOW);
 		return "edit-global";
 	}
 
@@ -55,12 +56,26 @@ public class RssEditController {
 		boolean currentlyAllowed = preferenceService.allowUserFeeds(request);
 		Gson gson = new GsonBuilder().create();
 		
-		if (!currentlyAllowed) {			
+		if (!currentlyAllowed) {
 			preferenceService.allowUserFeeds(request, true);
 			gson.toJson(DISALLOW, response.getWriter());
 		} else {
 			preferenceService.allowUserFeeds(request, false);
-			gson.toJson(ALLOW, response.getWriter());			
+			gson.toJson(ALLOW, response.getWriter());
+		}
+	}
+
+	@ResourceMapping ("showActivitiesToggle")
+	public void showActivitiesToggle(ResourceRequest request, ResourceResponse response) throws FeedPreferenceException, JsonIOException, IOException {
+		boolean currentlyAllowed = preferenceService.showActivities(request);
+		Gson gson = new GsonBuilder().create();
+		
+		if (!currentlyAllowed) {
+			preferenceService.showActivities(request, true);
+			gson.toJson(DISALLOW, response.getWriter());
+		} else {
+			preferenceService.showActivities(request, false);
+			gson.toJson(ALLOW, response.getWriter());
 		}
 	}
 	

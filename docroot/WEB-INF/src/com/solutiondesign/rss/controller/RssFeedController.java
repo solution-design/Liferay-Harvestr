@@ -50,6 +50,7 @@ public class RssFeedController {
 	@RenderMapping
 	public String render(RenderRequest request, Model model) {
 		model.addAttribute("allowUserFeed",preferenceService.allowUserFeeds(request));
+		model.addAttribute("showActivities",preferenceService.showActivities(request));
 		return "view";
 	}
 	

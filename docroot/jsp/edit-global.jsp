@@ -21,7 +21,8 @@
 
 <%@ include file="/jsp/errata.jsp" %>
 
-<portlet:resourceURL var="resourceURL" id="allowUserFeedsToggle" />
+<portlet:resourceURL var="allowUserFeedsURL" id="allowUserFeedsToggle" />
+<portlet:resourceURL var="showActivitiesURL" id="showActivitiesToggle" />
 
 <div class="input-group margin-bottom-sm">  
   <input id="newFeed" type="text" value=""><button class="addNewBtn">Add</button>
@@ -31,7 +32,13 @@
 <div id="myDataTable"></div>
 
 <c:if test="${allowLabel}">
-	<c:set var="checked" value="checked"/>
+	<c:set var="allowUserFeeds" value="checked"/>
 </c:if>
 
-Allow user feeds <input id="allowUserFeeds" type="checkbox" class="js-switch" data-url="${resourceURL}" ${checked} />
+<c:if test="${showActivities}">
+	<c:set var="showActivities" value="checked"/>
+</c:if>
+
+Allow user feeds <input id="allowUserFeeds" type="checkbox" class="js-switch" data-url="${allowUserFeedsURL}" ${allowUserFeeds} />
+<br/>
+Show Activities <input id="showActivities" type="checkbox" class="js-switch" data-url="${showActivitiesURL}" ${showActivities} />

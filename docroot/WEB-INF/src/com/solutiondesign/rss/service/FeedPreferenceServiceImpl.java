@@ -29,10 +29,29 @@ public class FeedPreferenceServiceImpl implements FeedPreferenceService {
 			PortletPreferences prefs = request.getPreferences();
 			prefs.setValue("allowUserFeeds", String.valueOf(val));
 			prefs.store();
-		} catch (ReadOnlyException | ValidatorException | IOException e) {
+		} catch (Exception e) {
 			throw new FeedPreferenceException(e);
 		}
 
 	}
 
+	@Override
+	public Boolean showActivities(PortletRequest request) {
+		PortletPreferences prefs = request.getPreferences();
+		String currentValue = prefs.getValue("showActivities","false");	
+		Boolean showActivities = Boolean.valueOf(currentValue);
+		return showActivities;
+	}
+
+	@Override
+	public void showActivities(PortletRequest request, boolean val)
+			throws FeedPreferenceException {
+		try {
+			PortletPreferences prefs = request.getPreferences();
+			prefs.setValue("showActivities", String.valueOf(val));
+			prefs.store();
+		} catch (Exception e) {
+			throw new FeedPreferenceException(e);
+		}		
+	}
 }

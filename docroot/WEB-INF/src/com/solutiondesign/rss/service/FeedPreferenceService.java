@@ -9,4 +9,6 @@ import com.solutiondesign.rss.exception.FeedPreferenceException;
 public interface FeedPreferenceService {
 	public Boolean allowUserFeeds(PortletRequest request);
 	public void allowUserFeeds(PortletRequest request, boolean val) throws FeedPreferenceException;
+	public Boolean showActivities(PortletRequest request);
+	public void showActivities(PortletRequest request, boolean val) throws FeedPreferenceException;
 }
