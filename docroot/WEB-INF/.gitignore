@@ -1,7 +1,10 @@
-/classes
+/classes/
 
-/service/com/solutiondesign/rss/*
-/src/com/solutiondesign/rss/model/impl/*
-/src/com/solutiondesign/rss/service/base/*
-/src/com/solutiondesign/rss/service/http/*
+/service/com/solutiondesign/rss/
+/src/com/solutiondesign/rss/model/impl/
+/src/com/solutiondesign/rss/service/base/
+/src/com/solutiondesign/rss/service/http/
 /src/service.properties
+/src/META-INF/*
+/sql/*
+/tld/*
