@@ -14,23 +14,13 @@
 
 package com.solutiondesign.rss.service.impl;
 
-import java.util.List;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
 
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.solutiondesign.rss.model.Feed;
-import com.solutiondesign.rss.model.impl.FeedImpl;
 import com.solutiondesign.rss.service.base.FeedServiceBaseImpl;
-import com.google.gson.Gson;
 
 /**
  * The implementation of the feed remote service.

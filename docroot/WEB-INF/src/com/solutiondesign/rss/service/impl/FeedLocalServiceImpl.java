@@ -20,8 +20,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
-
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -57,7 +55,6 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	 *
 	 * Never reference this interface directly. Always use {@link com.solutiondesign.rss.service.FeedLocalServiceUtil} to access the feed local service.
 	 */
-	private static final Logger LOG = Logger.getLogger(FeedServiceImpl.class);
 
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)
 	private com.liferay.portal.service.UserLocalService userLocalService;
