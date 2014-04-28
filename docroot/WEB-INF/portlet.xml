@@ -3,7 +3,7 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>RSS</portlet-name>
-		<display-name>Client-side RSS</display-name>
+		<display-name>Harvestr</display-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
@@ -16,9 +16,9 @@
 			<portlet-mode>edit</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Client-side RSS</title>
-			<short-title>Client-side RSS</short-title>
-			<keywords>Client-side RSS</keywords>
+			<title>Harvestr</title>
+			<short-title>Harvestr</short-title>
+			<keywords>Harvestr</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

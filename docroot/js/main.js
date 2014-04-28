@@ -40,8 +40,8 @@ AUI().use(
 				A.one("html").delegate('click', this.onEditFeeds, '.editTab');
 				
 				if (this.feedItemTemplate){
-					source = this.feedItemTemplate.html();
-					template = Handlebars.compile(source);
+					var source = this.feedItemTemplate._node.innerHTML;
+					this.template = Handlebars.compile(source);
 					 /* 
 					  * Setup tab view
 					  */
@@ -133,7 +133,7 @@ AUI().use(
 						_.each(SDG.RssPortlet.feedItems,
 							function(item) {
 								item.publishedDate = moment(item.publishedDate).fromNow();
-								$('#feedList').append(template(item));
+								$('#feedList').append(SDG.RssPortlet.template(item));
 						});				
 					});
 				});
