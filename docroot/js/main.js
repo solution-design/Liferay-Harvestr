@@ -98,7 +98,7 @@ AUI().use(
 					_.each(SDG.RssPortlet.feeds,
 						function(feed) {
 							$.ajax({
-								url : 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='+ 3+ '&output=json&q='+ feed.url+ '&hl=en&callback=?',
+								url : '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num='+ 3+ '&output=json&q='+ feed.url+ '&hl=en&callback=?',
 								dataType : 'json',
 								success : function(data) {
 									/*
